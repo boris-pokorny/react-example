@@ -1,7 +1,9 @@
 import { put, takeLatest, select } from "redux-saga/effects";
 import * as types from "../constants/ActionTypes";
 
-export const getFilter = (state) => state.filter;
+export const getFilter = (state) => {
+  return state.filter;
+};
 
 function* checkFilter() {
   const filter = yield select(getFilter);

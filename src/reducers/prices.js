@@ -55,7 +55,7 @@ function normalizePrices(rawData) {
 
 const defaultState = {
   loading: false,
-  prices: {},
+  data: {},
   error: null,
 };
 
@@ -72,13 +72,12 @@ const prices = (state = defaultState, action) => {
         ...state,
         loading: false,
         error: null,
-        prices: normalizePrices(action.json),
+        data: normalizePrices(action.json),
       };
       case types.FETCH_PRICES_FAILED:
         return {
           ...state,
           loading: false,
-          error: null,
           error: action.json
         };
       default:

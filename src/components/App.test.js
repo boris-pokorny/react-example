@@ -7,7 +7,7 @@ import App from './App';
 const mockStore = configureMockStore();
 const store = mockStore({
     prices: {
-        prices: {}
+        data: {}
     },
 });
 

@@ -2,7 +2,7 @@ import React from "react";
 import { Line } from "react-chartjs-2";
 import Spinner from "./Spinner";
 
-const PriceChart = ({ prices, loading, error }) => {
+const PriceChart = ({ data, loading, error }) => {
   if (loading) {
     return <Spinner />;
   }
@@ -15,11 +15,11 @@ const PriceChart = ({ prices, loading, error }) => {
     );
   }
 
-  if (!prices.datasets) {
+  if (!data.datasets) {
     return <h2> No data </h2>;
   }
 
-  prices.datasets.forEach((d, i) => {
+  data.datasets.forEach((d, i) => {
     d.backgroundColor = `rgba(75,192,${192 - 10 * i},0.5)`;
     d.borderColor = "rgba(0,0,0,1)";
     d.borderWidth = 2;
@@ -28,7 +28,7 @@ const PriceChart = ({ prices, loading, error }) => {
   return (
     <div>
       <Line
-        data={prices}
+        data={data}
         options={{
           title: {
             display: true,

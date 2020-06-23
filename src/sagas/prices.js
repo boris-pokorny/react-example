@@ -5,9 +5,10 @@ import { getFilter } from "./filter";
 async function fetchData(url) {
   const baseUrl = "https://www.alphavantage.co";
   const apiKey = "K5CQE26OF90AEQDB";
-  return fetch(
+  const response = await fetch(
     `${baseUrl}/${url}&apikey=${apiKey}&datatype=json`
-  ).then((response) => response.json());
+  );
+  return await response.json();
 }
 
 function* fetchPrices() {
