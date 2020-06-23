@@ -19,6 +19,7 @@ const SelectSymbol = ({ dispatch }) => {
 
   return (
     <Dropdown
+      id="dropdown-symbol"
       value={symbol}
       handleChange={(e) => handleChange(e)}
       options={options}

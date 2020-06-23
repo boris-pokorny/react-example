@@ -21,6 +21,7 @@ const Reload = ({ dispatch }) => {
         }}
       >
         <Button
+          id="reload-button"
           type="submit"
           variant="contained"
           color="default"
