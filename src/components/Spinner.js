@@ -5,13 +5,13 @@ const Spinner = ({ loading }) => {
   const override = `
     display: block;
     margin: 0 auto;
-    border-color: red;
+    margin-top: 20vh;
     `;
   return (
-    <div className="sweet-loading">
+    <div data-testid="spinner">
       <ClockLoader
         css={override}
-        size={150}
+        size={200}
         color={"#123abc"}
         loading={loading}
       />

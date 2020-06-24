@@ -26,7 +26,7 @@ const PriceChart = ({ data, loading, error }) => {
   });
 
   return (
-    <div>
+    <div data-testid="price-chart">
       <Line
         data={data}
         options={{

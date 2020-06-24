@@ -2,7 +2,7 @@ import React from "react";
 import { render } from "@testing-library/react";
 import { Provider } from "react-redux";
 import configureMockStore from "redux-mock-store";
-import App from "./App";
+import ChartHeader from "./ChartHeader";
 
 const mockStore = configureMockStore();
 const store = mockStore({
@@ -12,10 +12,12 @@ const store = mockStore({
 });
 
 test("renders", () => {
-  const { getByTestId } = render(
+  const { getByText } = render(
     <Provider store={store}>
-      <App />
+      <ChartHeader />
     </Provider>
   );
-  expect(getByTestId("chart-header")).toBeInTheDocument();
+  expect(getByText(/Symbol/)).toBeInTheDocument();
+  expect(getByText(/Period/)).toBeInTheDocument();
+  expect(getByText(/Reload/)).toBeInTheDocument();
 });
