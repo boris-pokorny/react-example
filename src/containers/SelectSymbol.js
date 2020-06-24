@@ -1,31 +1,63 @@
 import React from "react";
-import { symbolSelected } from "../actions";
+import { symbolSelected, searchSymbol } from "../actions";
 import { connect } from "react-redux";
-import Dropdown from "../components/Dropdown";
+import TextField from "@material-ui/core/TextField";
+import Autocomplete from "@material-ui/lab/Autocomplete";
 
-const SelectSymbol = ({ dispatch }) => {
-  const [symbol, setSymbol] = React.useState("");
-  const options = [
-    {
-      key: "DOW",
-      value: "DOW",
-    },
-  ];
+function debounce(func, wait) {
+  let timeout;
+  return function () {
+    const context = this;
+    const args = arguments;
+    const later = function () {
+      timeout = null;
+      func.apply(context, args);
+    };
+    clearTimeout(timeout);
+    timeout = setTimeout(later, wait);
+  };
+}
+const SelectSymbol = ({ dispatch, options }) => {
+  const [symbol, setSymbol] = React.useState({ value: "" });
+  const [inputValue, setInputValue] = React.useState("");
 
-  const handleChange = (event) => {
-    setSymbol(event.target.value);
-    dispatch(symbolSelected(event.target.value));
+  const handleChange = (event, newValue) => {
+    if (!newValue) {
+      return;
+    }
+    setSymbol(newValue);
+    dispatch(symbolSelected(newValue.key));
+  };
+
+  const handleInputChange = (event, newInputValue) => {
+    setInputValue(newInputValue);
+    if (!newInputValue) {
+      return;
+    }
+    dispatch(searchSymbol(newInputValue));
   };
 
   return (
-    <Dropdown
-      id="dropdown-symbol"
-      value={symbol}
-      handleChange={(e) => handleChange(e)}
+    <Autocomplete
+      id="select-symbol"
       options={options}
-      placeholder="Symbol"
+      getOptionLabel={(option) => option.value}
+      style={{ width: 200 }}
+      renderInput={(params) => (
+        <TextField {...params} label="Symbol" variant="outlined" />
+      )}
+      value={symbol}
+      inputValue={inputValue}
+      onInputChange={debounce(handleInputChange, 100)}
+      onChange={handleChange}
+      noOptionsText="Please start typing"
+      getOptionSelected={(option, value) => option.key === value.key}
     />
   );
 };
 
-export default connect()(SelectSymbol);
+const mapStateToProps = (state) => {
+  return state.search;
+};
+
+export default connect(mapStateToProps, null)(SelectSymbol);

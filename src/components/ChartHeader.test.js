@@ -9,15 +9,18 @@ const store = mockStore({
   prices: {
     data: {},
   },
+  search: {
+    options: [],
+  },
 });
 
 test("renders", () => {
-  const { getByText } = render(
+  const { getByText, getAllByText } = render(
     <Provider store={store}>
       <ChartHeader />
     </Provider>
   );
-  expect(getByText(/Symbol/)).toBeInTheDocument();
+  expect(getAllByText(/Symbol/).pop()).toBeInTheDocument();
   expect(getByText(/Period/)).toBeInTheDocument();
   expect(getByText(/Reload/)).toBeInTheDocument();
 });

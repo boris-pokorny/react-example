@@ -2,6 +2,8 @@ import React from "react";
 import { Line } from "react-chartjs-2";
 import Spinner from "./Spinner";
 
+const colors = ["red", "blue", "green", "magenta"];
+
 const PriceChart = ({ data, loading, error }) => {
   if (loading) {
     return <Spinner />;
@@ -20,8 +22,8 @@ const PriceChart = ({ data, loading, error }) => {
   }
 
   data.datasets.forEach((d, i) => {
-    d.backgroundColor = `rgba(75,192,${192 - 10 * i},0.5)`;
-    d.borderColor = "rgba(0,0,0,1)";
+    d.fill = false;
+    d.borderColor = colors[i % colors.length];
     d.borderWidth = 2;
   });
 

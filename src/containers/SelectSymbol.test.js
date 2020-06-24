@@ -22,6 +22,13 @@ describe("SelectSymbol", () => {
       prices: {
         data: {},
       },
+      search: {
+        options: [
+          {
+            value: "A",
+          },
+        ],
+      },
     });
 
     jest.spyOn(store, "dispatch");
@@ -37,24 +44,23 @@ describe("SelectSymbol", () => {
   });
 
   it("should render with given state from Redux store", () => {
-    expect(component).toMatchSnapshot("dropdown-symbol");
-    expect(component.getByText("Symbol")).toBeInTheDocument();
+    expect(component).toMatchSnapshot("select-symbol");
+    expect(component.getAllByText("Symbol").pop()).toBeInTheDocument();
   });
 
-  it("should dispatch an action on button click", () => {
-    const form = wrapper.find("Dropdown");
-
-    act(() => {
-      form.props().handleChange({
+  it("should dispatch search action", async () => {
+    await act(async () => {
+      const form = wrapper.find("input");
+      await form.props().onChange({
         target: {
-          value: "DOW",
+          value: "A",
         },
       });
     });
     expect(store.dispatch).toHaveBeenCalledTimes(1);
     expect(store.dispatch).toHaveBeenCalledWith({
-      value: "DOW",
-      type: types.SYMBOL_SELECTED,
+      searchTerm: "A",
+      type: types.SEARCH_SYMBOL,
     });
   });
 });

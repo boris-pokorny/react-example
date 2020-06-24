@@ -9,6 +9,9 @@ const store = mockStore({
   prices: {
     data: {},
   },
+  search: {
+    options: []
+  }
 });
 
 test("renders", () => {

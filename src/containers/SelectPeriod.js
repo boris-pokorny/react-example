@@ -2,19 +2,10 @@ import React from "react";
 import { periodSelected } from "../actions";
 import { connect } from "react-redux";
 import Dropdown from "../components/Dropdown";
+import { periodOptions } from "../constants/DropdownOptions";
 
 const SelectSymbol = ({ dispatch }) => {
-  const [symbol, setSymbol] = React.useState("");
-  const options = [
-    {
-      key: "TIME_SERIES_WEEKLY",
-      value: "Weekly",
-    },
-    {
-      key: "TIME_SERIES_MONTHLY",
-      value: "Monthly",
-    },
-  ];
+  const [symbol, setSymbol] = React.useState(periodOptions[0].key);
 
   const handleChange = (event) => {
     setSymbol(event.target.value);
@@ -25,7 +16,7 @@ const SelectSymbol = ({ dispatch }) => {
     <Dropdown
       value={symbol}
       handleChange={(e) => handleChange(e)}
-      options={options}
+      options={periodOptions}
       placeholder="Period"
     />
   );

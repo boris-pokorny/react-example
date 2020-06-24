@@ -19,3 +19,12 @@ export const periodSelected = value => ({
   type: types.PERIOD_SELECTED,
   value
 })
+
+export const searchSymbol = searchTerm => ({
+  type: types.SEARCH_SYMBOL,
+  searchTerm
+})
+
+export const symbolFound = () => ({
+  type: types.SYMBOL_FOUND,
+})

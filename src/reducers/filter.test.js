@@ -1,10 +1,11 @@
 import reducer from "./filter";
 import * as types from "../constants/ActionTypes";
+import { periodOptions } from "../constants/DropdownOptions";
 
 describe("filter reducer", () => {
   it("should return the initial state", () => {
     expect(reducer(undefined, {})).toEqual({
-      period: "",
+      period: periodOptions[0].key,
       symbol: "",
     });
   });
@@ -16,7 +17,7 @@ describe("filter reducer", () => {
         value: "DOW",
       })
     ).toEqual({
-      period: "",
+      period: periodOptions[0].key,
       symbol: "DOW",
     });
   });

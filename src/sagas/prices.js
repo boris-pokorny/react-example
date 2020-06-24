@@ -1,22 +1,16 @@
 import { put, takeLatest, select, call } from "redux-saga/effects";
 import * as types from "../constants/ActionTypes";
 import { getFilter } from "./filter";
-
-async function fetchData(url) {
-  const baseUrl = "https://www.alphavantage.co";
-  const apiKey = "K5CQE26OF90AEQDB";
-  const response = await fetch(
-    `${baseUrl}/${url}&apikey=${apiKey}&datatype=json`
-  );
-  return await response.json();
-}
+import fetchData from "../utils/Api";
 
 function* fetchPrices() {
   try {
     const filter = yield select(getFilter);
-    const apiParams = `function=${filter.period}&symbol=${filter.symbol}`;
-    const json = yield call(fetchData, `/query?${apiParams}`);
-    const error = json["Error Message"];
+    const json = yield call(fetchData, {
+      function: filter.period,
+      symbol: filter.symbol,
+    });
+    const error = json["Error Message"] ?? json["Note"];
     if (error) {
       throw error;
     }

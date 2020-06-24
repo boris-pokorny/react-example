@@ -1,8 +1,9 @@
 import * as types from "../constants/ActionTypes";
+import { periodOptions } from "../constants/DropdownOptions";
 
 const defaultState = {
   symbol: "",
-  period: "",
+  period: periodOptions[0].key,
 };
 
 const filter = (state = defaultState, action) => {

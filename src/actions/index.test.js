@@ -37,4 +37,20 @@ describe("actions", () => {
     };
     expect(actions.periodSelected(value)).toEqual(expectedAction);
   });
+
+  it("should search symbol", () => {
+    const searchTerm = "X";
+    const expectedAction = {
+      type: types.SEARCH_SYMBOL,
+      searchTerm,
+    };
+    expect(actions.searchSymbol(searchTerm)).toEqual(expectedAction);
+  });
+
+  it("should create action symbol found", () => {
+    const expectedAction = {
+      type: types.SYMBOL_FOUND,
+    };
+    expect(actions.symbolFound()).toEqual(expectedAction);
+  });
 });

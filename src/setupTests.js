@@ -4,3 +4,12 @@
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom/extend-expect';
 import 'jest-canvas-mock';
+
+document.createRange = () => ({
+    setStart: () => {},
+    setEnd: () => {},
+    commonAncestorContainer: {
+      nodeName: "BODY",
+      ownerDocument: document,
+    },
+  })

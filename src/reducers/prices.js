@@ -18,37 +18,45 @@ function normalizePrices(rawData) {
   const datasets = [
     {
       label: "Open",
-      data: Object.keys(timeseries).map((key) => {
-        const p = timeseries[key];
-        labels.push(key);
-        return p["1. open"];
-      }),
+      data: Object.keys(timeseries)
+        .map((key) => {
+          const p = timeseries[key];
+          labels.push(key);
+          return p["1. open"];
+        })
+        .reverse(),
     },
     {
       label: "Low",
-      data: Object.keys(timeseries).map((key) => {
-        const p = timeseries[key];
-        return p["3. low"];
-      }),
+      data: Object.keys(timeseries)
+        .map((key) => {
+          const p = timeseries[key];
+          return p["3. low"];
+        })
+        .reverse(),
     },
     {
       label: "High",
-      data: Object.keys(timeseries).map((key) => {
-        const p = timeseries[key];
-        return p["2. high"];
-      }),
+      data: Object.keys(timeseries)
+        .map((key) => {
+          const p = timeseries[key];
+          return p["2. high"];
+        })
+        .reverse(),
     },
     {
       label: "Close",
-      data: Object.keys(timeseries).map((key) => {
-        const p = timeseries[key];
-        return p["4. close"];
-      }),
+      data: Object.keys(timeseries)
+        .map((key) => {
+          const p = timeseries[key];
+          return p["4. close"];
+        })
+        .reverse(),
     },
   ];
 
   return {
-    labels: labels,
+    labels: labels.reverse(),
     datasets: datasets,
   };
 }
@@ -74,13 +82,13 @@ const prices = (state = defaultState, action) => {
         error: null,
         data: normalizePrices(action.json),
       };
-      case types.FETCH_PRICES_FAILED:
-        return {
-          ...state,
-          loading: false,
-          error: action.json
-        };
-      default:
+    case types.FETCH_PRICES_FAILED:
+      return {
+        ...state,
+        loading: false,
+        error: action.json,
+      };
+    default:
       return state;
   }
 };
