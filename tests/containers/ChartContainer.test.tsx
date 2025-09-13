@@ -1,14 +1,15 @@
 import React from "react";
 import configureMockStore from "redux-mock-store";
-import ChartContainer from "./ChartContainer";
-import { render } from "@testing-library/react";
+import ChartContainer from "../../src/containers/ChartContainer";
+import { render, RenderResult } from "@testing-library/react";
 import { Provider } from "react-redux";
+import { MockStore } from "redux-mock-store";
 
 const mockStore = configureMockStore();
 
 describe("ChartContainer", () => {
-  let store;
-  let component;
+  let store: MockStore;
+  let component: RenderResult;
 
   beforeEach(() => {
     store = mockStore({

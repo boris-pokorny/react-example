@@ -1,6 +1,6 @@
-import reducer from "./filter";
-import * as types from "../constants/ActionTypes";
-import { periodOptions } from "../constants/DropdownOptions";
+import reducer from "../../src/reducers/filter";
+import * as types from "../../src/constants/ActionTypes";
+import { periodOptions } from "../../src/constants/DropdownOptions";
 
 describe("filter reducer", () => {
   it("should return the initial state", () => {

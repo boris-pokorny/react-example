@@ -9,7 +9,7 @@ import rootSaga from "./sagas";
 import * as serviceWorker from "./serviceWorker";
 
 const sagaMiddleware = createSagaMiddleware();
-const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
+const store = createStore(rootReducer, applyMiddleware(sagaMiddleware as any));
 
 sagaMiddleware.run(rootSaga);
 

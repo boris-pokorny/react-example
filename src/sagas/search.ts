@@ -1,11 +1,11 @@
-import * as effects from "redux-saga/effects";
+import { put, takeLatest, call } from "./effects";
 import * as types from "../constants/ActionTypes";
 import fetchData from "../utils/Api";
 import { ActionType } from "../types";
 
 function* searchSymbol(action: ActionType): Generator<any, void, any> {
   try {
-    const json: any = yield effects.call(fetchData, {
+    const json: any = yield call(fetchData, {
       function: "SYMBOL_SEARCH",
       keywords: action.searchTerm,
     });
@@ -13,12 +13,12 @@ function* searchSymbol(action: ActionType): Generator<any, void, any> {
     if (error) {
       throw error;
     }
-    yield effects.put({ type: types.SYMBOL_FOUND, json: json });
+    yield put({ type: types.SYMBOL_FOUND, json: json });
   } catch (e) {
-    yield effects.put({ type: types.SEARCH_SYMBOL_FAILED, json: e });
+    yield put({ type: types.SEARCH_SYMBOL_FAILED, json: e });
   }
 }
 
 export function* watchSearch() {
-  yield effects.takeLatest(types.SEARCH_SYMBOL, searchSymbol);
+  yield takeLatest(types.SEARCH_SYMBOL, searchSymbol);
 }

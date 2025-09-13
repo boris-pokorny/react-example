@@ -1,5 +1,5 @@
-import reducer from "./search";
-import * as types from "../constants/ActionTypes";
+import reducer from "../../src/reducers/search";
+import * as types from "../../src/constants/ActionTypes";
 
 describe("search reducer", () => {
   it("should return the initial state", () => {

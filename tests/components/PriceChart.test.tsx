@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import PriceChart from "./PriceChart";
+import PriceChart from "../../src/components/PriceChart";
 
 test("renders price-chart no data", () => {
   const { getByText } = render(<PriceChart data={{}} />);

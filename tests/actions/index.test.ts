@@ -1,5 +1,5 @@
-import * as actions from "./index";
-import * as types from "../constants/ActionTypes";
+import * as actions from "../../src/actions/index";
+import * as types from "../../src/constants/ActionTypes";
 
 describe("actions", () => {
   it("should create an action to fetch prices", () => {

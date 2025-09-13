@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import Dropdown from "./Dropdown";
+import Dropdown from "../../src/components/Dropdown";
 
 const options = [
   {

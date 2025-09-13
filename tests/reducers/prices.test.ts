@@ -1,5 +1,5 @@
-import reducer from "./prices";
-import * as types from "../constants/ActionTypes";
+import reducer from "../../src/reducers/prices";
+import * as types from "../../src/constants/ActionTypes";
 
 describe("prices reducer", () => {
   it("should return the initial state", () => {

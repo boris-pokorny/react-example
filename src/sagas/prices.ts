@@ -1,4 +1,4 @@
-import * as effects from "redux-saga/effects";
+import { put, takeLatest, select, call } from "./effects";
 import * as types from "../constants/ActionTypes";
 import { getFilter } from "./filter";
 import fetchData from "../utils/Api";
@@ -6,8 +6,8 @@ import { FilterState } from "../types";
 
 function* fetchPrices(): Generator<any, void, any> {
   try {
-    const filter: FilterState = yield effects.select(getFilter);
-    const json: any = yield effects.call(fetchData, {
+    const filter: FilterState = yield select(getFilter);
+    const json: any = yield call(fetchData, {
       function: filter.period,
       symbol: filter.symbol,
     });
@@ -15,12 +15,12 @@ function* fetchPrices(): Generator<any, void, any> {
     if (error) {
       throw error;
     }
-    yield effects.put({ type: types.PRICES_FETCHED, json: json });
+    yield put({ type: types.PRICES_FETCHED, json: json });
   } catch (e) {
-    yield effects.put({ type: types.FETCH_PRICES_FAILED, json: e });
+    yield put({ type: types.FETCH_PRICES_FAILED, json: e });
   }
 }
 
 export function* watchPrices() {
-  yield effects.takeLatest(types.FETCH_PRICES, fetchPrices);
+  yield takeLatest(types.FETCH_PRICES, fetchPrices);
 }

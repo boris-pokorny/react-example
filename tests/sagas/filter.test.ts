@@ -1,9 +1,9 @@
-import { watchPeriod } from "./filter";
+import { watchPeriod } from "../../src/sagas/filter";
 import SagaTester from "redux-saga-tester";
 
-import filter from "../reducers/filter";
-import { symbolSelected, periodSelected } from "../actions";
-import prices from "../reducers/prices";
+import filter from "../../src/reducers/filter";
+import { symbolSelected, periodSelected } from "../../src/actions";
+import prices from "../../src/reducers/prices";
 
 test("filter saga", () => {
   const sagaTester = new SagaTester({

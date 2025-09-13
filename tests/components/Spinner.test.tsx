@@ -1,6 +1,6 @@
 import React from "react";
 import { render } from "@testing-library/react";
-import Spinner from "./Spinner";
+import Spinner from "../../src/components/Spinner";
 
 test("renders spinner", () => {
   const { getByTestId } = render(<Spinner />);

@@ -1,11 +1,11 @@
 import SagaTester from "redux-saga-tester";
-import { searchSymbol } from "../actions";
-import search from "../reducers/search";
-import { watchSearch } from "./search";
-import * as types from "../constants/ActionTypes";
+import { searchSymbol } from "../../src/actions";
+import search from "../../src/reducers/search";
+import { watchSearch } from "../../src/sagas/search";
+import * as types from "../../src/constants/ActionTypes";
 
 test("search saga", async () => {
-  const delay = (t) => new Promise((res) => setTimeout(() => res(), t));
+  const delay = (t: number) => new Promise((res) => setTimeout(() => res(undefined), t));
   const sagaTester = new SagaTester({
     initialState: {},
     reducers: {
@@ -20,7 +20,12 @@ test("search saga", async () => {
   const mockFetchPromise = Promise.resolve({
     json: () => mockJsonPromise,
   });
-  jest.spyOn(global, "fetch").mockImplementation(() => mockFetchPromise);
+
+  // Add fetch to global if it doesn't exist
+  if (!global.fetch) {
+    global.fetch = jest.fn();
+  }
+  jest.spyOn(global, "fetch").mockImplementation(() => mockFetchPromise as any);
 
   sagaTester.start(watchSearch);
 

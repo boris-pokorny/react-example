@@ -1,13 +1,13 @@
 import SagaTester from "redux-saga-tester";
 
-import filter from "../reducers/filter";
-import { fetchPrices } from "../actions";
-import prices from "../reducers/prices";
-import { watchPrices } from "./prices";
-import * as types from "../constants/ActionTypes";
+import filter from "../../src/reducers/filter";
+import { fetchPrices } from "../../src/actions";
+import prices from "../../src/reducers/prices";
+import { watchPrices } from "../../src/sagas/prices";
+import * as types from "../../src/constants/ActionTypes";
 
 test("prices saga", async () => {
-  const delay = (t) => new Promise((res) => setTimeout(() => res(), t));
+  const delay = (t: number) => new Promise((res) => setTimeout(() => res(undefined), t));
   const sagaTester = new SagaTester({
     initialState: {},
     reducers: {
@@ -23,7 +23,12 @@ test("prices saga", async () => {
   const mockFetchPromise = Promise.resolve({
     json: () => mockJsonPromise,
   });
-  jest.spyOn(global, "fetch").mockImplementation(() => mockFetchPromise);
+
+  // Add fetch to global if it doesn't exist
+  if (!global.fetch) {
+    global.fetch = jest.fn();
+  }
+  jest.spyOn(global, "fetch").mockImplementation(() => mockFetchPromise as any);
 
   sagaTester.start(watchPrices);
 

@@ -6,17 +6,16 @@ import Autocomplete from "@mui/material/Autocomplete";
 import { RootState, SearchState, DropdownOption } from "../types";
 import { Dispatch } from "redux";
 
-function debounce(func: Function, wait: number): Function {
+function debounce<T extends (...args: any[]) => any>(func: T, wait: number): T {
   let timeout: NodeJS.Timeout;
-  return function (this: any, ...args: any[]) {
-    const context = this;
-    const later = function () {
+  return ((...args: any[]) => {
+    const later = () => {
       timeout = null!;
-      func.apply(context, args);
+      func(...args);
     };
     clearTimeout(timeout);
     timeout = setTimeout(later, wait);
-  };
+  }) as T;
 }
 
 interface SelectSymbolProps extends SearchState {
