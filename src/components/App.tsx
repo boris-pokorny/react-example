@@ -2,23 +2,20 @@ import React from "react";
 import ChartContainer from "../containers/ChartContainer";
 import ChartHeader from "./ChartHeader";
 import ErrorBoundary from "./ErrorBoundary";
-import { makeStyles } from "@material-ui/core";
+import { styled } from "@mui/material/styles";
 
-const useStyles = makeStyles((theme) => ({
-  appContainer: {
-    margin: theme.spacing(4),
-  },
+const AppContainer = styled('div')(({ theme }) => ({
+  margin: theme.spacing(4),
 }));
 
 const App = () => {
-  const classes = useStyles();
   return (
-    <div className={classes.appContainer}>
+    <AppContainer>
       <ErrorBoundary>
         <ChartHeader />
         <ChartContainer />
       </ErrorBoundary>
-    </div>
+    </AppContainer>
   );
 };
 

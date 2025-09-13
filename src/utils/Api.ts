@@ -1,4 +1,6 @@
-export default async function fetchData(params) {
+import { ApiParams } from '../types';
+
+export default async function fetchData(params: ApiParams): Promise<any> {
   const baseUrl = "https://www.alphavantage.co/query";
   const apiKey = "K5CQE26OF90AEQDB";
   let apiParams = `apikey=${apiKey}&datatype=json`;

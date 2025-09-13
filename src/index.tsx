@@ -1,6 +1,6 @@
 import React from "react";
 import createSagaMiddleware from "redux-saga";
-import { render } from "react-dom";
+import { createRoot } from "react-dom/client";
 import { Provider } from "react-redux";
 import { createStore, applyMiddleware } from "redux";
 import rootReducer from "./reducers";
@@ -13,11 +13,12 @@ const store = createStore(rootReducer, applyMiddleware(sagaMiddleware));
 
 sagaMiddleware.run(rootSaga);
 
-render(
+const container = document.getElementById("root");
+const root = createRoot(container!);
+root.render(
   <Provider store={store}>
     <App />
-  </Provider>,
-  document.getElementById("root")
+  </Provider>
 );
 
 serviceWorker.unregister();

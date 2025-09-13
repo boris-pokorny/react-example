@@ -1,7 +1,11 @@
 import React from "react";
 import ClockLoader from "react-spinners/ClockLoader";
 
-const Spinner = ({ loading }) => {
+interface SpinnerProps {
+  loading: boolean;
+}
+
+const Spinner: React.FC<SpinnerProps> = ({ loading }) => {
   const override = `
     display: block;
     margin: 0 auto;
@@ -10,7 +14,7 @@ const Spinner = ({ loading }) => {
   return (
     <div data-testid="spinner">
       <ClockLoader
-        css={override}
+        cssOverride={{ display: 'block', margin: '0 auto', marginTop: '20vh' }}
         size={200}
         color={"#123abc"}
         loading={loading}

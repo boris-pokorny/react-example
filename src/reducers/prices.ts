@@ -1,11 +1,12 @@
 import * as types from "../constants/ActionTypes";
+import { PricesState, PricesData, ActionType } from "../types";
 
-function normalizePrices(rawData) {
+function normalizePrices(rawData: any): PricesData | {} {
   if (!rawData) {
     return {};
   }
-  let timeseries;
-  Object.keys(rawData).map((key) => {
+  let timeseries: any;
+  Object.keys(rawData).forEach((key) => {
     if (key.includes("Time Series")) {
       timeseries = rawData[key];
     }
@@ -14,7 +15,7 @@ function normalizePrices(rawData) {
     return {};
   }
 
-  const labels = [];
+  const labels: string[] = [];
   const datasets = [
     {
       label: "Open",
@@ -22,7 +23,7 @@ function normalizePrices(rawData) {
         .map((key) => {
           const p = timeseries[key];
           labels.push(key);
-          return p["1. open"];
+          return parseFloat(p["1. open"]);
         })
         .reverse(),
     },
@@ -31,7 +32,7 @@ function normalizePrices(rawData) {
       data: Object.keys(timeseries)
         .map((key) => {
           const p = timeseries[key];
-          return p["3. low"];
+          return parseFloat(p["3. low"]);
         })
         .reverse(),
     },
@@ -40,7 +41,7 @@ function normalizePrices(rawData) {
       data: Object.keys(timeseries)
         .map((key) => {
           const p = timeseries[key];
-          return p["2. high"];
+          return parseFloat(p["2. high"]);
         })
         .reverse(),
     },
@@ -49,7 +50,7 @@ function normalizePrices(rawData) {
       data: Object.keys(timeseries)
         .map((key) => {
           const p = timeseries[key];
-          return p["4. close"];
+          return parseFloat(p["4. close"]);
         })
         .reverse(),
     },
@@ -61,13 +62,13 @@ function normalizePrices(rawData) {
   };
 }
 
-const defaultState = {
+const defaultState: PricesState = {
   loading: false,
   data: {},
   error: null,
 };
 
-const prices = (state = defaultState, action) => {
+const prices = (state = defaultState, action: ActionType): PricesState => {
   switch (action.type) {
     case types.FETCH_PRICES:
       return {

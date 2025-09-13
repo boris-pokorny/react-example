@@ -1,7 +1,8 @@
 import { connect } from "react-redux";
 import PriceChart from "../components/PriceChart";
+import { RootState, PricesState } from "../types";
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: RootState): PricesState => {
   return state.prices;
 };
 
