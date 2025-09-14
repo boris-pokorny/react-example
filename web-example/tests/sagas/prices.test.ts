@@ -1,7 +1,6 @@
 import SagaTester from "redux-saga-tester";
 
 import filter from "../../src/reducers/filter";
-import { fetchPrices } from "../../src/actions";
 import prices from "../../src/reducers/prices";
 import { watchPrices } from "../../src/sagas/prices";
 import * as types from "../../src/constants/ActionTypes";
@@ -40,7 +39,7 @@ test("prices saga", async () => {
 
   sagaTester.start(watchPrices);
 
-  sagaTester.dispatch(fetchPrices());
+  sagaTester.dispatch({ type: types.FETCH_PRICES });
   expect(sagaTester.getState().prices.loading).toEqual(true);
   expect(global.fetch).toHaveBeenCalledTimes(1);
 

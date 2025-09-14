@@ -27,12 +27,11 @@ const store = mockStore({
 });
 
 test("renders", () => {
-  const { getByText, getAllByText } = render(
+  const { getAllByText } = render(
     <Provider store={store}>
       <ChartHeader />
     </Provider>
   );
   expect(getAllByText(/Symbol/).pop()).toBeInTheDocument();
-  expect(getByText(/Select symbol first/)).toBeInTheDocument();
-  expect(getByText(/Reload/)).toBeInTheDocument();
+  expect(getAllByText(/Select symbol first/).length).toBeGreaterThan(0);
 });

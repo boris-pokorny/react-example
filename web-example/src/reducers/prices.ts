@@ -42,8 +42,8 @@ function normalizePrices(rawData: any): PricesData | {} {
   ];
 
   return {
-    labels: labels.reverse(),
-    datasets: datasets,
+    labels,
+    datasets,
   };
 }
 

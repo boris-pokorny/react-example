@@ -57,3 +57,9 @@ export interface ApiParams {
   symbol?: string;
   period?: string;
 }
+
+export interface PriceChartProps {
+  data: PricesData | {};
+  loading: boolean;
+  error: string | null;
+}

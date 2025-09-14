@@ -15,15 +15,15 @@ const options = [
 
 test("renders", () => {
   let value = "";
-  const { getByText } = render(
+  const { getByLabelText } = render(
     <Dropdown
       value={value}
       handleChange={(e) => {
-        setValue(event.target.value);
+        value = e.target.value;
       }}
       options={options}
       placeholder="Placeholder"
     />
   );
-  expect(getByText(/Placeholder/)).toBeInTheDocument();
+  expect(getByLabelText(/Placeholder/)).toBeInTheDocument();
 });

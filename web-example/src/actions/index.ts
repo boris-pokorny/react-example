@@ -1,10 +1,5 @@
 import * as types from "../constants/ActionTypes";
 
-export const fetchPrices = (id: string) => ({
-  type: types.FETCH_PRICES,
-  id
-})
-
 export const pricesFetched = (id: string) => ({
   type: types.PRICES_FETCHED,
   id

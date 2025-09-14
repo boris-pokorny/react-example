@@ -7,8 +7,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import { DropdownOption } from '../types';
 
 const StyledFormControl = styled(FormControl)(({ theme }) => ({
-  margin: theme.spacing(1),
-  minWidth: 120,
+  width: '100%',
 }));
 
 interface DropdownProps {
@@ -27,6 +26,7 @@ const Dropdown: React.FC<DropdownProps> = (props) => {
           labelId="demo-simple-select-label"
           id="demo-simple-select"
           value={props.value}
+          label={props.placeholder}
           onChange={(event) => props.handleChange(event)}
         >
             {props.options.map((option: DropdownOption) =>

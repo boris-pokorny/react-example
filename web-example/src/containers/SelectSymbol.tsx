@@ -47,7 +47,7 @@ const SelectSymbol: React.FC<SelectSymbolProps> = ({ dispatch, options }) => {
       id="select-symbol"
       options={options}
       getOptionLabel={(option) => option.value}
-      style={{ width: 200 }}
+      style={{ width: '100%' }}
       renderInput={(params) => (
         <TextField {...params} label="Symbol" variant="outlined" />
       )}

@@ -2,14 +2,6 @@ import * as actions from "../../src/actions/index";
 import * as types from "../../src/constants/ActionTypes";
 
 describe("actions", () => {
-  it("should create an action to fetch prices", () => {
-    const id = "X";
-    const expectedAction = {
-      type: types.FETCH_PRICES,
-      id,
-    };
-    expect(actions.fetchPrices(id)).toEqual(expectedAction);
-  });
 
   it("should create an action as prices fetched", () => {
     const id = "X";
