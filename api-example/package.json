@@ -1,0 +1,21 @@
+{
+  "name": "csv-rest-api",
+  "version": "1.0.0",
+  "description": "Simple Node.js REST API that returns data from CSV files",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "csv-parser": "^3.0.0",
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  },
+  "keywords": ["api", "csv", "rest", "nodejs"],
+  "author": "",
+  "license": "ISC"
+}
